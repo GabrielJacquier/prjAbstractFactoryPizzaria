@@ -34,6 +34,7 @@ import model.minasgerais.ingredientes.queijo.CreamCheeseApimentado;
 import model.minasgerais.ingredientes.queijo.MussarelaParma;
 import model.minasgerais.ingredientes.queijo.RequeijãoDeMinas;
 import model.minasgerais.ingredientes.saladas.AlfaceMG;
+import view.montarPizza.enums.RegiaoEnum;
 
 /**
  *
@@ -109,6 +110,11 @@ public class IngredienteMGFactory extends IngredienteFactory {
     @Override
     public Molho getMolho(Double gramas) {
         return new MolhoTomate(gramas);
+    }
+
+    @Override
+    public RegiaoEnum getRegiao() {
+        return RegiaoEnum.MINAS_GERAIS;
     }
 
 }

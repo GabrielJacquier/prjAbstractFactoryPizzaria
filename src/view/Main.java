@@ -10,6 +10,8 @@ import model.comum.pizza.DoisQueijos;
 import model.comum.pizza.Pizza;
 import model.comum.pizza.Portuguesa;
 import model.minasgerais.factory.IngredienteMGFactory;
+import model.minasgerais.ingredientes.queijo.CheddarDeMinas;
+import view.montarPizza.enums.PizzaEnum;
 
 /**
  *
@@ -17,19 +19,24 @@ import model.minasgerais.factory.IngredienteMGFactory;
  */
 public class Main {
 
-    public static void main(String[] args) {
-        Pizza pizza = new Portuguesa(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
-        Pizza pizza2 = new DoisQueijos(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
-        
-        System.out.println("Pizza: " + pizza.nome());
-        pizza.ingredientes().forEach(ingrediente -> {
-            System.out.print(ingrediente.getInformacoes());
-        });
-        
-        System.out.println("\nPizza 2: " + pizza2.nome());
-        pizza2.ingredientes().forEach(ingrediente -> {
-            System.out.print("Ingrediente removido: " + ingrediente.isRemovidaDaPizza() + " ");
-            System.out.print(ingrediente.getInformacoes());
-        });
+    public static void main(String[] args) throws Exception {
+//        Pizza pizza = new Portuguesa(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
+//        Pizza pizza2 = new DoisQueijos(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
+//        
+//        System.out.println("Pizza: " + pizza.nome());
+//        pizza.ingredientes().forEach(ingrediente -> {
+//            System.out.print(ingrediente.getInformacoes());
+//        });
+//        
+//        System.out.println("\nPizza 2: " + pizza2.nome());
+//        pizza2.ingredientes().forEach(ingrediente -> {
+//            System.out.print("Ingrediente removido: " + ingrediente.isRemovidaDaPizza() + " ");
+//            System.out.print(ingrediente.getInformacoes());
+//        });
+
+        Pizza pizza = PizzaEnum.Portuguesa.getIntance(new IngredienteMGFactory(), 
+                        PizzaTamanho.GRANDE, 
+                        new CheddarDeMinas(20D));
+
     }
 }

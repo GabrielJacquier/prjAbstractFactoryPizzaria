@@ -19,12 +19,15 @@ import model.comum.ingredientes.queijo.Cheddar;
 import model.comum.ingredientes.queijo.CreamCheese;
 import model.comum.ingredientes.queijo.Mussarela;
 import model.comum.ingredientes.salada.Alface;
+import view.montarPizza.enums.RegiaoEnum;
 
 /**
  *
  * @author gabriel
  */
 public abstract class IngredienteFactory {
+    
+    public abstract RegiaoEnum getRegiao();
 
     public abstract Bacon getBacon(Double gramas);
 

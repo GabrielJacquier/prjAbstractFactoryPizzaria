@@ -12,6 +12,7 @@ import model.comum.factory.IngredienteFactory;
 import model.comum.ingredientes.indispensavel.Massa;
 import model.comum.ingredientes.indispensavel.Molho;
 import model.comum.ingredientes.Ingrediente;
+import view.montarPizza.enums.RegiaoEnum;
 
 /**
  *
@@ -24,10 +25,11 @@ public abstract class Pizza {
     private Molho molho;
     private PizzaTamanho tamanho;
     private Optional<Ingrediente> recheioDaBorda;
+    private RegiaoEnum regiao;
 
     public Pizza(IngredienteFactory ingredienteFactory, PizzaTamanho tamanho) {
         this.ingredienteFactory = ingredienteFactory;
-
+        this.regiao = ingredienteFactory.getRegiao();
         this.massa = ingredienteFactory.getMassa(1.2 * tamanho.getPorcentagem());
         this.molho = ingredienteFactory.getMolho(tamanho.getPorcentagem());
         this.tamanho = tamanho;
@@ -62,4 +64,11 @@ public abstract class Pizza {
         this.recheioDaBorda = Optional.of(recheioDaBorda);
     }
 
+    public RegiaoEnum getRegiao() {
+        return regiao;
+    }
+
+    public void setRegiao(RegiaoEnum regiao) {
+        this.regiao = regiao;
+    }
 }
