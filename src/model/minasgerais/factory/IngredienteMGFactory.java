@@ -20,14 +20,20 @@ import model.comum.ingredientes.queijo.Cheddar;
 import model.comum.ingredientes.queijo.CreamCheese;
 import model.comum.ingredientes.queijo.Mussarela;
 import model.comum.ingredientes.salada.Alface;
+import model.minasgerais.ingredientes.carnes.BaconMG;
+import model.minasgerais.ingredientes.carnes.CalabresaMG;
+import model.minasgerais.ingredientes.carnes.FrangoMG;
 import model.minasgerais.ingredientes.indispensaveis.MassaFina;
 import model.minasgerais.ingredientes.indispensaveis.MolhoTomate;
+import model.minasgerais.ingredientes.legumes.BrocolisMG;
 import model.minasgerais.ingredientes.legumes.ErvilhaMG;
 import model.minasgerais.ingredientes.legumes.MilhoMG;
 import model.minasgerais.ingredientes.legumes.PalmitoMG;
+import model.minasgerais.ingredientes.queijo.CheddarDeMinas;
 import model.minasgerais.ingredientes.queijo.CreamCheeseApimentado;
 import model.minasgerais.ingredientes.queijo.MussarelaParma;
 import model.minasgerais.ingredientes.queijo.RequeijãoDeMinas;
+import model.minasgerais.ingredientes.saladas.AlfaceMG;
 
 /**
  *
@@ -37,22 +43,22 @@ public class IngredienteMGFactory extends IngredienteFactory {
 
     @Override
     public Bacon getBacon(Double gramas) {
-        return null;
+        return new BaconMG(gramas);
     }
 
     @Override
     public Calabresa getCalabresa(Double gramas) {
-        return null;
+        return new CalabresaMG(gramas);
     }
 
     @Override
     public Frango getFrango(Double gramas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new FrangoMG(gramas);
     }
 
     @Override
     public Brocolis getBrocolis(Double gramas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new BrocolisMG(gramas);
     }
 
     @Override
@@ -77,7 +83,7 @@ public class IngredienteMGFactory extends IngredienteFactory {
 
     @Override
     public Cheddar getCheddar(Double gramas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new CheddarDeMinas(gramas);
     }
 
     @Override
@@ -92,7 +98,7 @@ public class IngredienteMGFactory extends IngredienteFactory {
 
     @Override
     public Alface getAlface(Double gramas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new AlfaceMG(gramas);
     }
 
     @Override
