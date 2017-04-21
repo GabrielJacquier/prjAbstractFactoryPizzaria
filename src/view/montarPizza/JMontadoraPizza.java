@@ -7,14 +7,14 @@ package view.montarPizza;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.TableModel;
+import model.comum.enums.IngredienteBordaEnum;
 import model.comum.enums.PizzaTamanho;
 import model.comum.factory.IngredienteFactory;
 import model.comum.pizza.Pizza;
-import model.comum.pizza.Portuguesa;
 import model.minasgerais.factory.IngredienteMGFactory;
-import view.montarPizza.enums.PizzaEnum;
-import view.montarPizza.enums.RegiaoEnum;
+import model.comum.enums.PizzaEnum;
+import model.comum.enums.RegiaoEnum;
+import model.comum.ingredientes.Ingrediente;
 
 /**
  *
@@ -28,6 +28,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
     
     private List<Pizza> pizzas;
     private IngredienteFactory ingredienteFactory;
+    private JModelTablePizza modelTablePizza;
 
     public JMontadoraPizza() {
         initComponents();
@@ -35,13 +36,14 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         loadCmbRegiao();
         loadCmbPizza();
         loadCmbTamanho();
+        loadCmbBorda();
         ingredienteFactory = new IngredienteMGFactory();
     }
 
     private void loadTablePizza() {
-        this.pizzas = new ArrayList<Pizza>();
-        TableModel model = new JModelTablePizza(pizzas);
-        tblPizza.setModel(model);
+        this.pizzas = new ArrayList<>();
+        modelTablePizza = new JModelTablePizza(pizzas);
+        tblPizza.setModel(modelTablePizza);
     }
 
     private void loadCmbRegiao() {
@@ -59,6 +61,13 @@ public class JMontadoraPizza extends javax.swing.JFrame {
     private void loadCmbTamanho() {
         PizzaTamanho.valuesList().forEach(tamanho -> {
             cmbTamanho.addItem(tamanho.getLabel());
+        });
+    }
+
+    private void loadCmbBorda() {
+        cmbBorda.addItem("");
+        IngredienteBordaEnum.valuesList().forEach(ingrediente -> {
+            cmbBorda.addItem(ingrediente.getLabel());
         });
     }
 
@@ -84,6 +93,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cmbBorda = new javax.swing.JComboBox<>();
         btnAdicionar = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +106,8 @@ public class JMontadoraPizza extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblPizza);
+
+        qtdPizza.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel1.setText("Região");
 
@@ -111,6 +123,13 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionarActionPerformed(evt);
+            }
+        });
+
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
             }
         });
 
@@ -145,9 +164,11 @@ public class JMontadoraPizza extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(qtdPizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)))
+                                .addComponent(qtdPizza, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -173,18 +194,39 @@ public class JMontadoraPizza extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(qtdPizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(btnAdicionar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        
+        for (int i = 0; i < (int) qtdPizza.getValue() ; i++) {
+            adicionaPizza();
+        }
+        qtdPizza.setValue(1);
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void adicionaPizza() {
+        PizzaTamanho tamanho = PizzaTamanho.getEnum(cmbTamanho.getSelectedItem().toString());
+        Ingrediente borda = null;
+        if(!cmbBorda.getSelectedItem().toString().isEmpty()) {
+            borda = IngredienteBordaEnum.getEnum(cmbBorda.getSelectedItem().toString())
+                    .getIntance(ingredienteFactory, tamanho);
+        }
+
+        Pizza pizza = PizzaEnum.getEnum(cmbPizza.getSelectedItem().toString())
+                .getIntance(this.ingredienteFactory, tamanho, borda);
+        modelTablePizza.add(pizza);
+        modelTablePizza.update();
+    }
     /**
      * @param args the command line arguments
      */
@@ -222,6 +264,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> cmbBorda;
     private javax.swing.JComboBox<String> cmbPizza;
     private javax.swing.JComboBox<String> cmbRegiao;

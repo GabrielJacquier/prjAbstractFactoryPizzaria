@@ -19,7 +19,7 @@ import model.comum.ingredientes.queijo.Cheddar;
 import model.comum.ingredientes.queijo.CreamCheese;
 import model.comum.ingredientes.queijo.Mussarela;
 import model.comum.ingredientes.salada.Alface;
-import view.montarPizza.enums.RegiaoEnum;
+import model.comum.enums.RegiaoEnum;
 
 /**
  *

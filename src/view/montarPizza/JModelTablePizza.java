@@ -40,7 +40,7 @@ public class JModelTablePizza  extends AbstractTableModel {
             case 0:
                 return pizza.nome();
             case 1:
-                return pizza.getTamanho().toString();
+                return pizza.getTamanho().getLabel();
             case 2:
                 return pizza.getRecheioDaBorda().isPresent() ? pizza.getRecheioDaBorda().get().getNome() : "-";
             case 3:
@@ -58,6 +58,9 @@ public class JModelTablePizza  extends AbstractTableModel {
     
     public void add(Pizza pizza) {
         pizzas.add(pizza);
+    }
+    
+    public void removerItemsSelecionados() {
     }
     
     public void update() {

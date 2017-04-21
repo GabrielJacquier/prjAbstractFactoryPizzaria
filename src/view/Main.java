@@ -5,13 +5,13 @@
  */
 package view;
 
+import model.comum.enums.IngredienteBordaEnum;
 import model.comum.enums.PizzaTamanho;
-import model.comum.pizza.DoisQueijos;
 import model.comum.pizza.Pizza;
-import model.comum.pizza.Portuguesa;
 import model.minasgerais.factory.IngredienteMGFactory;
 import model.minasgerais.ingredientes.queijo.CheddarDeMinas;
-import view.montarPizza.enums.PizzaEnum;
+import model.comum.enums.PizzaEnum;
+import model.comum.ingredientes.Ingrediente;
 
 /**
  *
@@ -34,9 +34,11 @@ public class Main {
 //            System.out.print(ingrediente.getInformacoes());
 //        });
 
-        Pizza pizza = PizzaEnum.Portuguesa.getIntance(new IngredienteMGFactory(), 
-                        PizzaTamanho.GRANDE, 
-                        new CheddarDeMinas(20D));
+//        Pizza pizza = PizzaEnum.Portuguesa.getIntance(new IngredienteMGFactory(), 
+//                        PizzaTamanho.GRANDE, 
+//                        new CheddarDeMinas(20D));
 
+        Ingrediente ingrediente = IngredienteBordaEnum.BACON.getIntance(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
+        System.out.println(ingrediente.getNome());
     }
 }

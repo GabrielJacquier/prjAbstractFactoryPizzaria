@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.montarPizza.enums;
+package model.comum.enums;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +32,7 @@ public enum RegiaoEnum {
         return Arrays.stream(RegiaoEnum.values()).collect(Collectors.toList());
     }
     
-    public RegiaoEnum getEnum(String label) {
+    public static RegiaoEnum getEnum(String label) {
         List<RegiaoEnum> regioes = Arrays.stream(RegiaoEnum.values()).collect(Collectors.toList());
         return regioes.stream().filter(regiao -> regiao.getLabel().equals(label)).findFirst().get();
     }

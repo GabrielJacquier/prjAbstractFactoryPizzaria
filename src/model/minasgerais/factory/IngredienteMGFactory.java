@@ -34,7 +34,7 @@ import model.minasgerais.ingredientes.queijo.CreamCheeseApimentado;
 import model.minasgerais.ingredientes.queijo.MussarelaParma;
 import model.minasgerais.ingredientes.queijo.RequeijãoDeMinas;
 import model.minasgerais.ingredientes.saladas.AlfaceMG;
-import view.montarPizza.enums.RegiaoEnum;
+import model.comum.enums.RegiaoEnum;
 
 /**
  *

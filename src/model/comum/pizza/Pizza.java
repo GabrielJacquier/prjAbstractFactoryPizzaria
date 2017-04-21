@@ -12,7 +12,7 @@ import model.comum.factory.IngredienteFactory;
 import model.comum.ingredientes.indispensavel.Massa;
 import model.comum.ingredientes.indispensavel.Molho;
 import model.comum.ingredientes.Ingrediente;
-import view.montarPizza.enums.RegiaoEnum;
+import model.comum.enums.RegiaoEnum;
 
 /**
  *
@@ -61,7 +61,11 @@ public abstract class Pizza {
     }
 
     public void setRecheioDaBorda(Ingrediente recheioDaBorda) {
-        this.recheioDaBorda = Optional.of(recheioDaBorda);
+        Optional<Ingrediente> borda = Optional.empty();
+        if(recheioDaBorda != null) {
+            borda = Optional.of(recheioDaBorda);
+        }
+        this.recheioDaBorda = borda;
     }
 
     public RegiaoEnum getRegiao() {

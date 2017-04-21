@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.montarPizza.enums;
+package model.comum.enums;
 
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import model.comum.enums.PizzaTamanho;
 import model.comum.factory.IngredienteFactory;
 import model.comum.ingredientes.Ingrediente;
 import model.comum.pizza.DoisQueijos;
@@ -40,18 +41,23 @@ public enum PizzaEnum {
         return Arrays.stream(PizzaEnum.values()).collect(Collectors.toList());
     }
 
-    public PizzaEnum getEnum(String label) {
+    public static PizzaEnum getEnum(String label) {
         List<PizzaEnum> pizzas = Arrays.stream(PizzaEnum.values()).collect(Collectors.toList());
         return pizzas.stream().filter(pizza -> pizza.getLabel().equals(label)).findFirst().get();
     }
 
-    public Pizza getIntance(IngredienteFactory ingredienteFactory, PizzaTamanho tamanho, Ingrediente borda) throws Exception {
-        Class[] type = {IngredienteFactory.class, PizzaTamanho.class};
-        Constructor cons = classePizza.getConstructor(type);
-        Object[] objects = {ingredienteFactory, tamanho};
-        Pizza pizza = (Pizza) cons.newInstance(objects);
-        pizza.setRecheioDaBorda(borda);
-        return pizza;
+    public Pizza getIntance(IngredienteFactory ingredienteFactory, PizzaTamanho tamanho, Ingrediente borda) {
+        try {
+            Class[] type = {IngredienteFactory.class, PizzaTamanho.class};
+            Constructor cons = classePizza.getConstructor(type);
+            Object[] objects = {ingredienteFactory, tamanho};
+            Pizza pizza = (Pizza) cons.newInstance(objects);
+            pizza.setRecheioDaBorda(borda);
+            return pizza;
+        } catch (Exception ex) {
+            Logger.getLogger(PizzaEnum.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

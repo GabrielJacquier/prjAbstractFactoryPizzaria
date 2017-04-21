@@ -8,7 +8,6 @@ package model.comum.enums;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import view.montarPizza.enums.PizzaEnum;
 
 /**
  *
@@ -40,8 +39,8 @@ public enum PizzaTamanho {
         return Arrays.stream(PizzaTamanho.values()).collect(Collectors.toList());
     }
 
-    public PizzaEnum getEnum(String label) {
-        List<PizzaEnum> pizzas = Arrays.stream(PizzaEnum.values()).collect(Collectors.toList());
+    public static PizzaTamanho getEnum(String label) {
+        List<PizzaTamanho> pizzas = Arrays.stream(PizzaTamanho.values()).collect(Collectors.toList());
         return pizzas.stream().filter(pizza -> pizza.getLabel().equals(label)).findFirst().get();
     }
 }
