@@ -12,6 +12,7 @@ package model.comum.ingredientes;
 public abstract class Ingrediente {
 
     private Double quantidade;
+    private boolean removidaDaPizza;
 
     public Ingrediente(Double quantidade) {
         this.quantidade = quantidade;
@@ -38,5 +39,13 @@ public abstract class Ingrediente {
     public String getInformacoes() {
         return String.format("Ingrediente: %s, Quantidade gramas: %.2f, Valor: %.2f, Calorias Kg: %.2f\n",
                 this.getNome(), this.quantidade, this.getValorPorGramas(), this.getKiloCaloriasPorKilo());
+    }
+
+    public boolean isRemovidaDaPizza() {
+        return removidaDaPizza;
+    }
+
+    public void setRemovidaDaPizza(boolean removidaDaPizza) {
+        this.removidaDaPizza = removidaDaPizza;
     }
 }

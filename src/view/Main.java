@@ -5,9 +5,8 @@
  */
 package view;
 
-import java.util.List;
 import model.comum.enums.PizzaTamanho;
-import model.comum.ingredientes.Ingrediente;
+import model.comum.pizza.DoisQueijos;
 import model.comum.pizza.Pizza;
 import model.comum.pizza.Portuguesa;
 import model.minasgerais.factory.IngredienteMGFactory;
@@ -20,10 +19,17 @@ public class Main {
 
     public static void main(String[] args) {
         Pizza pizza = new Portuguesa(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
-        List<Ingrediente> ingredientes = pizza.ingredientes();
+        Pizza pizza2 = new DoisQueijos(new IngredienteMGFactory(), PizzaTamanho.GRANDE);
+        
         System.out.println("Pizza: " + pizza.nome());
-        ingredientes.forEach(ingrediente -> {
-            System.out.println(ingrediente.getInformacoes());
+        pizza.ingredientes().forEach(ingrediente -> {
+            System.out.print(ingrediente.getInformacoes());
+        });
+        
+        System.out.println("\nPizza 2: " + pizza2.nome());
+        pizza2.ingredientes().forEach(ingrediente -> {
+            System.out.print("Ingrediente removido: " + ingrediente.isRemovidaDaPizza() + " ");
+            System.out.print(ingrediente.getInformacoes());
         });
     }
 }

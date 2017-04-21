@@ -10,9 +10,6 @@ import java.util.List;
 import model.comum.enums.PizzaTamanho;
 import model.comum.factory.IngredienteFactory;
 import model.comum.ingredientes.Ingrediente;
-import model.comum.ingredientes.legumes.Ervilha;
-import model.comum.ingredientes.legumes.Milho;
-import model.comum.ingredientes.legumes.Palmito;
 import model.comum.ingredientes.queijo.Catupiry;
 import model.comum.ingredientes.queijo.Mussarela;
 
@@ -20,26 +17,20 @@ import model.comum.ingredientes.queijo.Mussarela;
  *
  * @author gabriel
  */
-public class Portuguesa extends Pizza {
+public class DoisQueijos extends Pizza {
 
     private Catupiry catupiry;
     private Mussarela mussarela;
-    private Palmito palmito;
-    private Ervilha ervilha;
-    private Milho milho;
 
-    public Portuguesa(IngredienteFactory ingredienteFactory, PizzaTamanho tamanho) {
+    public DoisQueijos(IngredienteFactory ingredienteFactory, PizzaTamanho tamanho) {
         super(ingredienteFactory, tamanho);
         catupiry = ingredienteFactory.getCatupiry(150D);
         mussarela = ingredienteFactory.getMussarela(100D);
-        palmito = ingredienteFactory.getPalmito(100D);
-        ervilha = ingredienteFactory.getErvilha(100D);
-        milho = ingredienteFactory.getMilho(100D);
     }
 
     @Override
     public String nome() {
-        return "Portuguesa";
+        return "Dois queijos";
     }
 
     @Override
@@ -49,10 +40,7 @@ public class Portuguesa extends Pizza {
         ingredientes.add(getMassa());
         ingredientes.add(catupiry);
         ingredientes.add(mussarela);
-        ingredientes.add(palmito);
-        ingredientes.add(ervilha);
-        ingredientes.add(milho);
         return ingredientes;
     }
-
+    
 }
