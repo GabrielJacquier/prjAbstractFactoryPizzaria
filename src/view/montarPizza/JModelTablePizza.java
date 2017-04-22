@@ -63,10 +63,6 @@ public class JModelTablePizza  extends AbstractTableModel {
     public void removerItemsSelecionados() {
     }
     
-    public Pizza getPizza(int index){
-        return pizzas.get(index);
-    }
-    
     public void update() {
         this.fireTableDataChanged();
     }
