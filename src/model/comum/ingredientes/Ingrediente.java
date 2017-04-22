@@ -12,7 +12,7 @@ package model.comum.ingredientes;
 public abstract class Ingrediente {
 
     private Double quantidade;
-    private boolean removidaDaPizza;
+    private boolean removidaDaPizza = false;
 
     public Ingrediente(Double quantidade) {
         this.quantidade = quantidade;
@@ -45,7 +45,7 @@ public abstract class Ingrediente {
         return removidaDaPizza;
     }
 
-    public void setRemovidaDaPizza(boolean removidaDaPizza) {
-        this.removidaDaPizza = removidaDaPizza;
+    public void setRemovidaDaPizza() {
+        removidaDaPizza = !removidaDaPizza;
     }
 }

@@ -7,6 +7,7 @@ package view.montarPizza;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.ListSelectionListener;
 import model.comum.enums.IngredienteBordaEnum;
 import model.comum.enums.PizzaTamanho;
 import model.comum.factory.IngredienteFactory;
@@ -15,6 +16,7 @@ import model.minasgerais.factory.IngredienteMGFactory;
 import model.comum.enums.PizzaEnum;
 import model.comum.enums.RegiaoEnum;
 import model.comum.ingredientes.Ingrediente;
+import view.selecionarIngredientes.JSelecionaIngredientes;
 
 /**
  *
@@ -44,6 +46,15 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         this.pizzas = new ArrayList<>();
         modelTablePizza = new JModelTablePizza(pizzas);
         tblPizza.setModel(modelTablePizza);
+        
+        tblPizza.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = tblPizza.rowAtPoint(evt.getPoint());
+                
+                new JSelecionaIngredientes(modelTablePizza.getPizza(row).ingredientes()).setVisible(true);
+            }
+        });
     }
 
     private void loadCmbRegiao() {
