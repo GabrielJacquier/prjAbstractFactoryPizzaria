@@ -7,7 +7,6 @@ package view.montarPizza;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.event.ListSelectionListener;
 import model.comum.enums.IngredienteBordaEnum;
 import model.comum.enums.PizzaTamanho;
 import model.comum.factory.IngredienteFactory;
@@ -50,9 +49,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         tblPizza.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = tblPizza.rowAtPoint(evt.getPoint());
-                
-                new JSelecionaIngredientes(modelTablePizza.getPizza(row).ingredientes()).setVisible(true);
+                updateVisibleButtons();
             }
         });
     }
@@ -82,6 +79,11 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         });
     }
 
+    private void updateVisibleButtons() {
+        btnRemover.setEnabled(tblPizza.getSelectedRows().length > 0);
+        btnIngredientes.setEnabled(tblPizza.getSelectedRows().length == 1);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,6 +107,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         cmbBorda = new javax.swing.JComboBox<>();
         btnAdicionar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
+        btnIngredientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,9 +141,18 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         });
 
         btnRemover.setText("Remover");
+        btnRemover.setEnabled(false);
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoverActionPerformed(evt);
+            }
+        });
+
+        btnIngredientes.setText("Ver Ingredientes");
+        btnIngredientes.setEnabled(false);
+        btnIngredientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngredientesActionPerformed(evt);
             }
         });
 
@@ -152,9 +164,6 @@ public class JMontadoraPizza extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
@@ -165,19 +174,25 @@ public class JMontadoraPizza extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(qtdPizza)
-                            .addComponent(cmbBorda, 0, 120, Short.MAX_VALUE)
-                            .addComponent(cmbTamanho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(39, 39, 39)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(qtdPizza)
+                                    .addComponent(cmbBorda, 0, 120, Short.MAX_VALUE)
+                                    .addComponent(cmbTamanho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(39, 39, 39)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnIngredientes)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +218,8 @@ public class JMontadoraPizza extends javax.swing.JFrame {
                     .addComponent(qtdPizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(btnAdicionar)
-                    .addComponent(btnRemover))
+                    .addComponent(btnRemover)
+                    .addComponent(btnIngredientes))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
         );
@@ -219,8 +235,16 @@ public class JMontadoraPizza extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        
+        int[] rows = tblPizza.getSelectedRows();
+        modelTablePizza.removerItemsSelecionados(rows);
+        modelTablePizza.update();
+        updateVisibleButtons();
     }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void btnIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngredientesActionPerformed
+        int[] rows = tblPizza.getSelectedRows();
+        new JSelecionaIngredientes(modelTablePizza.getPizza(rows[0]).ingredientes()).setVisible(true);
+    }//GEN-LAST:event_btnIngredientesActionPerformed
 
     private void adicionaPizza() {
         PizzaTamanho tamanho = PizzaTamanho.getEnum(cmbTamanho.getSelectedItem().toString());
@@ -235,6 +259,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         modelTablePizza.add(pizza);
         modelTablePizza.update();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -272,6 +297,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnIngredientes;
     private javax.swing.JButton btnRemover;
     private javax.swing.JComboBox<String> cmbBorda;
     private javax.swing.JComboBox<String> cmbPizza;

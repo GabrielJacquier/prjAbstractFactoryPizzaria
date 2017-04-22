@@ -5,6 +5,7 @@
  */
 package view.montarPizza;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.comum.pizza.Pizza;
@@ -60,7 +61,12 @@ public class JModelTablePizza  extends AbstractTableModel {
         pizzas.add(pizza);
     }
     
-    public void removerItemsSelecionados() {
+    public void removerItemsSelecionados(int selectedRows[]) {
+        List<Pizza> pizzasParaRemover = new ArrayList<>();
+        for (int i = 0; i < selectedRows.length; i++) {
+            pizzasParaRemover.add(pizzas.get(selectedRows[i]));
+        }
+        pizzas.removeAll(pizzasParaRemover);
     }
     
     public Pizza getPizza(int index){
