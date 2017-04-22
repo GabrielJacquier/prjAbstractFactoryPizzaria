@@ -3,28 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.riodejaneiro.ingredientes.carnes;
+package model.saopaulo.ingredientes.carnes;
 
-import model.comum.ingredientes.carne.Calabresa;
+import model.comum.ingredientes.carne.Bacon;
 
 /**
  *
  * @author gabriel
  */
-public class CalabresaRJ extends Calabresa {
+public class BaconSP extends Bacon {
 
-    public CalabresaRJ(Double quantidade) {
+    public BaconSP(Double quantidade) {
         super(quantidade);
     }
 
     @Override
     public String getNome() {
-        return "Calabresa do Rio";
+        return "Bacon Paulista";
     }
 
     @Override
     public Double getPrecoKilo() {
-        return 17D;
+        return 18D;
     }
 
     @Override

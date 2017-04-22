@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import model.comum.factory.IngredienteFactory;
 import model.minasgerais.factory.IngredienteMGFactory;
 import model.riodejaneiro.factory.IngredienteRJFactory;
+import model.saopaulo.factory.IngredienteSPFactory;
 
 /**
  *
@@ -20,9 +21,9 @@ import model.riodejaneiro.factory.IngredienteRJFactory;
  */
 public enum RegiaoEnum {
     MINAS_GERAIS("Minas Gerais", IngredienteMGFactory.class),
-    SAO_PAULO("São Paulo",IngredienteMGFactory.class),
+    SAO_PAULO("São Paulo",IngredienteSPFactory.class),
     RIO_DE_JANEIRO("Rio de Janeiro", IngredienteRJFactory.class);
-    
+
     private String label;
     private Class<? extends IngredienteFactory> classeFactory;
     

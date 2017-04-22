@@ -3,33 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.riodejaneiro.ingredientes.carnes;
+package model.saopaulo.ingredientes.queijo;
 
-import model.comum.ingredientes.carne.Calabresa;
+import model.comum.ingredientes.queijo.Cheddar;
 
 /**
  *
  * @author gabriel
  */
-public class CalabresaRJ extends Calabresa {
+public class CheddarCariocaSP extends Cheddar {
 
-    public CalabresaRJ(Double quantidade) {
+    public CheddarCariocaSP(Double quantidade) {
         super(quantidade);
     }
 
     @Override
     public String getNome() {
-        return "Calabresa do Rio";
+        return "Cheddar Paulista";
     }
 
     @Override
     public Double getPrecoKilo() {
-        return 17D;
+        return 20D;
     }
 
     @Override
     public Double getKiloCaloriasPorKilo() {
-        return 1500D;
+        return 990D;
     }
     
 }

@@ -20,7 +20,7 @@ public class JModelTableIngredientes extends AbstractTableModel {
     
      public JModelTableIngredientes(List<Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
-        columns = new String[] {"Nome", "Preço", "Quantia", "Retirado"};
+        columns = new String[] {"Nome", "Preço", "Qtd. gramas", "Ingrediente incluso"};
     }
     
     @Override
@@ -40,12 +40,11 @@ public class JModelTableIngredientes extends AbstractTableModel {
             case 0:
                 return ingrediente.getNome();
             case 1:
-                return ingrediente.getPrecoKilo();
+                return String.format("R$ %.2f", ingrediente.getValorPorGramas());
             case 2:
-                return ingrediente.getQuantidadeGramas();
+                return String.format("0,%.0f Kg", ingrediente.getQuantidadeGramas());
             case 3: 
-                if(ingrediente.isRemovidaDaPizza()) return "SIM";
-                else return "NÃO";
+                return ingrediente.isRemovidaDaPizza() ? "Não" : "Sim";
         }
         return null;
     }
