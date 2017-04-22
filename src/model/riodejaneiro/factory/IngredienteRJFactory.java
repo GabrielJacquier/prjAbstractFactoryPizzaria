@@ -20,8 +20,6 @@ import model.comum.ingredientes.queijo.Cheddar;
 import model.comum.ingredientes.queijo.CreamCheese;
 import model.comum.ingredientes.queijo.Mussarela;
 import model.comum.ingredientes.salada.Alface;
-import model.minasgerais.ingredientes.indispensaveis.MassaFina;
-import model.minasgerais.ingredientes.indispensaveis.MolhoTomate;
 import model.comum.enums.RegiaoEnum;
 import model.riodejaneiro.ingredientes.carnes.BaconRJ;
 import model.riodejaneiro.ingredientes.carnes.CalabresaRJ;

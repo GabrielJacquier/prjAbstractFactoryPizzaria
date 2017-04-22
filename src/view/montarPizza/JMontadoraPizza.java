@@ -5,6 +5,8 @@
  */
 package view.montarPizza;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class JMontadoraPizza extends javax.swing.JFrame {
     /**
      * Creates new form JMontadoraPizza
      */
-    
+
     private List<Pizza> pizzas;
     private IngredienteFactory ingredienteFactory;
     private JModelTablePizza modelTablePizza;
@@ -59,6 +61,12 @@ public class JMontadoraPizza extends javax.swing.JFrame {
     private void loadCmbRegiao() {
         RegiaoEnum.valuesList().forEach(regiao -> {
             cmbRegiao.addItem(regiao.getLabel());
+        });
+        
+        cmbRegiao.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                ingredienteFactory = RegiaoEnum.getEnum(cmbRegiao.getSelectedItem().toString()).getinstance();
+            }
         });
     }
 

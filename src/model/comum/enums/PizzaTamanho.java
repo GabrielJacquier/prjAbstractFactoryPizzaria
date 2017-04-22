@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
  * @author gabriel
  */
 public enum PizzaTamanho {
-    BROTO(30D, "Broto"),
+    BROTO(20D, "Broto"),
     MEDIA(50D, "Média"),
-    GRANDE(80D, "Grande"),
-    EXTRAGRANDE(100D, "Extra Grande");
+    GRANDE(100D, "Grande"),
+    EXTRAGRANDE(150D, "Extra Grande");
 
     private Double porcentagem;
     private String label;
