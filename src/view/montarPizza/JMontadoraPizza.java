@@ -5,6 +5,8 @@
  */
 package view.montarPizza;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import model.comum.enums.IngredienteBordaEnum;
@@ -46,9 +48,9 @@ public class JMontadoraPizza extends javax.swing.JFrame {
         modelTablePizza = new JModelTablePizza(pizzas);
         tblPizza.setModel(modelTablePizza);
         
-        tblPizza.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblPizza.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(MouseEvent evt) {
                 updateVisibleButtons();
             }
         });

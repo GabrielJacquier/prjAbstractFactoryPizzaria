@@ -15,7 +15,7 @@ import model.comum.pizza.Pizza;
  * @author gabriel
  */
 public class JModelTablePizza  extends AbstractTableModel {
-    
+
     private List<Pizza> pizzas;
     private String[] columns;
 
