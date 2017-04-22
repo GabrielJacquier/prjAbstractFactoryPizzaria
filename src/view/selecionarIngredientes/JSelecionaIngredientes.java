@@ -49,7 +49,7 @@ public class JSelecionaIngredientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblIngredientes = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblIngredientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
