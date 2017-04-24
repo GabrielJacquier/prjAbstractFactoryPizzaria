@@ -3,8 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.saopaulo.factory;
+package model.bahia.factory;
 
+import model.bahia.ingredientes.carnes.BaconBA;
+import model.bahia.ingredientes.carnes.CalabresaBA;
+import model.bahia.ingredientes.carnes.FrangoBA;
+import model.bahia.ingredientes.indispensaveis.MassaCrocanteBA;
+import model.bahia.ingredientes.indispensaveis.MolhoPicanteBA;
+import model.bahia.ingredientes.legumes.BrocolisBA;
+import model.bahia.ingredientes.legumes.ErvilhaBA;
+import model.bahia.ingredientes.legumes.MilhoBA;
+import model.bahia.ingredientes.legumes.PalmitoBA;
+import model.bahia.ingredientes.queijo.CheddarBA;
+import model.bahia.ingredientes.queijo.CreamCheesePicanteBA;
+import model.bahia.ingredientes.queijo.MussarelaBA;
+import model.bahia.ingredientes.queijo.RequeijaoCremoso;
+import model.bahia.ingredientes.saladas.AlfaceBA;
+import model.comum.enums.RegiaoEnum;
 import model.comum.factory.IngredienteFactory;
 import model.comum.ingredientes.carne.Bacon;
 import model.comum.ingredientes.carne.Calabresa;
@@ -20,101 +35,86 @@ import model.comum.ingredientes.queijo.Cheddar;
 import model.comum.ingredientes.queijo.CreamCheese;
 import model.comum.ingredientes.queijo.Mussarela;
 import model.comum.ingredientes.salada.Alface;
-import model.comum.enums.RegiaoEnum;
-import model.saopaulo.ingredientes.carnes.BaconSP;
-import model.saopaulo.ingredientes.carnes.CalabresaSP;
-import model.saopaulo.ingredientes.carnes.FrangoSP;
-import model.saopaulo.ingredientes.indispensaveis.MassaGrossaSP;
-import model.saopaulo.ingredientes.indispensaveis.MolhoTomateSP;
-import model.saopaulo.ingredientes.legumes.BrocolisSP;
-import model.saopaulo.ingredientes.legumes.ErvilhaSP;
-import model.saopaulo.ingredientes.legumes.MilhoSP;
-import model.saopaulo.ingredientes.legumes.PalmitoSP;
-import model.saopaulo.ingredientes.queijo.CatupiryCariocaSP;
-import model.saopaulo.ingredientes.queijo.CheddarCariocaSP;
-import model.saopaulo.ingredientes.queijo.CreamCheeseSuaveSP;
-import model.saopaulo.ingredientes.queijo.MussarelaSP;
-import model.saopaulo.ingredientes.saladas.AlfaceSP;
 
 /**
  *
- * @author gabriel
+ * @author Ale
  */
-public class IngredienteSPFactory extends IngredienteFactory {
+public class IngredienteBAFactory extends IngredienteFactory  {
 
     @Override
     public Bacon getBacon(Double gramas) {
-        return new BaconSP(gramas);
+        return new BaconBA(gramas);
     }
 
     @Override
     public Calabresa getCalabresa(Double gramas) {
-        return new CalabresaSP(gramas);
+        return new CalabresaBA(gramas);
     }
 
     @Override
     public Frango getFrango(Double gramas) {
-        return new FrangoSP(gramas);
+        return new FrangoBA(gramas);
     }
 
     @Override
     public Brocolis getBrocolis(Double gramas) {
-        return new BrocolisSP(gramas);
+        return new BrocolisBA(gramas);
     }
 
     @Override
     public Ervilha getErvilha(Double gramas) {
-        return new ErvilhaSP(gramas);
+        return new ErvilhaBA(gramas);
     }
 
     @Override
     public Milho getMilho(Double gramas) {
-        return new MilhoSP(gramas);
+        return new MilhoBA(gramas);
     }
 
     @Override
     public Palmito getPalmito(Double gramas) {
-        return new PalmitoSP(gramas);
+        return new PalmitoBA(gramas);
     }
 
     @Override
     public Catupiry getCatupiry(Double gramas) {
-        return new CatupiryCariocaSP(gramas);
+        return new RequeijaoCremoso(gramas);
     }
 
     @Override
     public Cheddar getCheddar(Double gramas) {
-        return new CheddarCariocaSP(gramas);
+        return new CheddarBA(gramas);
     }
 
     @Override
     public CreamCheese getCreamCheese(Double gramas) {
-        return new CreamCheeseSuaveSP(gramas);
+        return new CreamCheesePicanteBA(gramas);
     }
 
     @Override
     public Mussarela getMussarela(Double gramas) {
-        return new MussarelaSP(gramas);
+        return new MussarelaBA(gramas);
     }
 
     @Override
     public Alface getAlface(Double gramas) {
-        return new AlfaceSP(gramas);
+        return new AlfaceBA(gramas);
     }
 
     @Override
     public Massa getMassa(Double gramas) {
-        return new MassaGrossaSP(gramas);
+        return new MassaCrocanteBA(gramas);
     }
 
     @Override
     public Molho getMolho(Double gramas) {
-        return new MolhoTomateSP(gramas);
+        return new MolhoPicanteBA(gramas);
     }
 
     @Override
     public RegiaoEnum getRegiao() {
-        return RegiaoEnum.SAO_PAULO;
+        return RegiaoEnum.BAHIA;
     }
 
-}
+}  
